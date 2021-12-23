@@ -14,9 +14,9 @@ console.log(peter.attack());
 
 const obj = {
 	name: "xavier",
-	fun: function () {
-		return "hii";
+	attack() {
+		return `I am ` + this;
 	},
 };
 
-console.log(obj.fun);
+console.log(obj.attack());
