@@ -1,4 +1,7 @@
-const worker = new Worker("worker.js");
-worker.postMessage("Helloooo");
+// const worker = new Worker("worker.js");
+// worker.postMessage("Helloooo");
 
-addEventListener("message");
+// addEventListener("message");
+
+const { spawn } = require("child_process");
+spawn("git", ["stuff"]);
