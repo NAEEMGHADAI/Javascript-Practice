@@ -18,6 +18,12 @@ async function fetchUser() {
 	console.log(data);
 }
 
+const urls = [
+	"https://jsonplaceholder.typicode.com/users",
+	"https://jsonplaceholder.typicode.com/albums",
+	"https://jsonplaceholder.typicode.com/posts",
+];
+
 Promise.all(
 	urls.map((url) => {
 		return fetch(url).then((resp) => resp.json());
@@ -28,19 +34,15 @@ Promise.all(
 		console.log(results[1]);
 		console.log(results[2]);
 	})
-	.catch("Oops");
-
-const urls = [
-	"https://jsonplaceholder.typicode.com/users",
-	"https://jsonplaceholder.typicode.com/albums",
-	"https://jsonplaceholder.typicode.com/posts",
-];
+	.catch("Oops")
+	.finally(() => console.log("Extra"));
 
 const getData = async function () {
 	try {
 		const [user, posts, albums] = await Promise.all(
-			urls.map((url) => {
-				return fetch(url).then((resp) => resp.json());
+			urls.map(async (url) => {
+				const resp = await fetch(url);
+				return await resp.json();
 			})
 		);
 
@@ -49,5 +51,18 @@ const getData = async function () {
 		console.log("albums", albums);
 	} catch (err) {
 		console.log("Ooops ", err);
+	}
+};
+
+const urls = [
+	"https://jsonplaceholder.typicode.com/users",
+	"https://jsonplaceholder.typicode.com/albums",
+	"https://jsonplaceholder.typicode.com/posts",
+];
+const getData2 = async function () {
+	const arrayOfPromises = urls.map((url) => fetch(url));
+	for await (let req of arrayOfPromises) {
+		const data = await req.json();
+		console.log(data);
 	}
 };
