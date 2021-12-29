@@ -11,6 +11,16 @@
 		<script>
 			var fight = "Hahaha";
 		</script>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 		<script src="script.js"></script>
+		<script>
+			var script2 = (function ($, fight) {
+				$("h1").click(function () {
+					$("h1").hide();
+				});
+				$ = undefined;
+				fight = "0";
+			})(jQuery, fight);
+		</script>
 	</body>
 </html>
