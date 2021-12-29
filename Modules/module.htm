@@ -12,7 +12,7 @@
 			var fight = "Hahaha";
 		</script>
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-		<script src="script.js"></script>
+		<script type="module" src="script.js"></script>
 		<script>
 			var script2 = (function ($, fight) {
 				$("h1").click(function () {
@@ -21,6 +21,12 @@
 				$ = undefined;
 				fight = "0";
 			})(jQuery, fight);
+		</script>
+
+		<script type="module">
+			import fight, { jump } from "./script.js";
+			console.log(fight("ron", "hagrid"));
+			console.log(jump);
 		</script>
 	</body>
 </html>
